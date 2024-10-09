@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-nginx
+  template:
+    metadata:
+      labels:
+        app: my-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest 
+        ports:
+        - containerPort: 80
+        securityContext:
+          runAsUser: 1000  # Run as non-root user
+          runAsGroup: 1000
+          capabilities:
+            drop:
+            - ALL        # Drop all capabilities
+          readOnlyRootFilesystem: true  # Read-only root filesystem
+        resources:
+          limits:
+            cpu: "500m"    # Set CPU limit
+            memory: "256Mi" # Set memory limit
+          requests:
+            cpu: "100m"
+            memory: "64Mi"
