@@ -5,7 +5,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/wp7790/gitops-1
+    repoURL: https://github.com/wp7790/gitops-1.git
     targetRevision: HEAD
     path: manifests/  # Corrected path
   destination:
