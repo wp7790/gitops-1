@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-nginx
+  namespace: default 
+spec:
+  rules:
+  - host: my-nginx.yourdomain.com # Replace with your domain
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-nginx-service 
+            port:
+              number: 80
